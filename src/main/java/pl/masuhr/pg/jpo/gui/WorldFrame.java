@@ -3,14 +3,14 @@ package pl.masuhr.pg.jpo.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import static pl.masuhr.pg.jpo.Properties.FIELD_MARGIN;
+import static pl.masuhr.pg.jpo.Properties.FIELD_SIZE;
+import static pl.masuhr.pg.jpo.Properties.SIZE_OF_FIELD;
+
 /**
  * Created by karol on 02.10.2016.
  */
 public class WorldFrame {
-    private static final int SIZE_OF_FIELD = 30;
-    private static final int FIELD_MARGIN = 3;
-    private static final Dimension FIELD_SIZE = new Dimension(SIZE_OF_FIELD, SIZE_OF_FIELD);
-
     private JPanel panel;
     private int sizeOfWorld;
     private JPanel buttonPanel;
