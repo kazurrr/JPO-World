@@ -9,16 +9,16 @@ import java.awt.*;
  */
 public abstract class Organism implements Comparable<Organism> {
     private int strength;
-    private int initiative;
+    public int initiative;
     private int x;
     private int y;
     private int symbol;
-    private int age;
+    public int age;
     private World myWorld;
 
     public abstract void action();
 
-    public abstract void collision();
+    public abstract void isAttackedBy();
 
     public Organism(World myWorld, Point point) {
         this.myWorld = myWorld;
@@ -50,8 +50,8 @@ public abstract class Organism implements Comparable<Organism> {
 
     public int compareTo(Organism opponent) {
         if (this.initiative == opponent.initiative)
-            return ((Integer) this.age).compareTo(opponent.age);
+            return ((Integer) opponent.age).compareTo(this.age);
         else
-            return ((Integer) this.initiative).compareTo(opponent.initiative);
+            return ((Integer) opponent.initiative).compareTo(this.initiative);
     }
 }

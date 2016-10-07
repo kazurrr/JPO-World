@@ -1,4 +1,4 @@
-package pl.masuhr.pg.jpo;
+package pl.masuhr.pg.jpo.gui;
 
 import java.awt.*;
 
@@ -12,6 +12,5 @@ public class Properties {
     public static final int SIZE_OF_FIELD = 30;
     public static final int FIELD_MARGIN = 3;
     public static final Dimension FIELD_SIZE = new Dimension(SIZE_OF_FIELD, SIZE_OF_FIELD);
-
 
 }

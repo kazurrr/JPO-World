@@ -11,5 +11,6 @@ import java.awt.*;
 public class Sheep extends Animal {
     public Sheep(World myWorld, Point point) {
         super(myWorld, point);
+        setInitiative(5);
     }
 }

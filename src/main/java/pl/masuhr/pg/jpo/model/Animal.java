@@ -16,10 +16,12 @@ public class Animal extends Organism {
     }
 
     public void action() {
+        //ToDo check if paralys
+        //ToDo new position random generator
 
     }
 
-    public void collision() {
+    public void isAttackedBy() {
 
     }
 }

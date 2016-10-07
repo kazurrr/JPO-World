@@ -1,14 +1,15 @@
 package pl.masuhr.pg.jpo.gui;
 
-import pl.masuhr.pg.jpo.Properties;
 import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import static pl.masuhr.pg.jpo.Properties.*;
+import static pl.masuhr.pg.jpo.gui.Properties.*;
 
 /**
  * Created by karol on 05.10.2016.
@@ -27,12 +28,15 @@ public class MainFrame extends JFrame {
     private Logger logger = Logger.getInstance();
     private WorldFrame worldFrame;
     private World greatWorld;
+    private int roundCouner = 1;
 
     public MainFrame() {
         super(WINDOW_TITLE);
         initComponents();
         setFrameSize();
         initWorld();
+        renderWorld();
+        bindActions();
     }
 
     private void initComponents() {
@@ -56,4 +60,19 @@ public class MainFrame extends JFrame {
         greatWorld = new World(SIZE_OF_WORLD);
     }
 
+    private void renderWorld() {
+        worldFrame.render(greatWorld);
+    }
+
+    private void bindActions() {
+        nextRoundButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logger.newRound(roundCouner);
+                greatWorld.performRound();
+                renderWorld();
+                roundCouner++;
+            }
+        });
+    }
 }

@@ -3,14 +3,15 @@ package pl.masuhr.pg.jpo.controller;
 import pl.masuhr.pg.jpo.model.Organism;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 /**
  * Created by karol on 06.10.2016.
  */
-public class Queue {
-    private List<Organism> allOrganisms = new ArrayList<Organism>();
+public class Queue implements Iterable<Organism>{
+//    private SortedSet<Organism> allOrganisms = new TreeSet<>();
+    private List<Organism> allOrganisms = new ArrayList<>();
 
     public void add(Organism organism) {
         allOrganisms.add(organism);
@@ -26,5 +27,14 @@ public class Queue {
                 return true;
         }
         return false;
+    }
+
+    public void sort() {
+        Collections.sort(allOrganisms);
+    }
+
+    @Override
+    public Iterator<Organism> iterator() {
+        return allOrganisms.iterator();
     }
 }

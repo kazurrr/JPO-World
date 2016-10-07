@@ -19,14 +19,13 @@ public class Logger {
 
     public void setUpLogger(JTextArea logOutput) {
         this.logOutput = logOutput;
+        info("Round: 0");
     }
 
     public void info (Point point, String message) {
         if (isSetUp()) {
-            StringBuilder logMessage = new StringBuilder();
-            logMessage.append("Field [").append(point.x).append(":").append(point.y).append("] ");
-            logMessage.append(message).append("\n");
-            logOutput.append(logMessage.toString());
+            String logMessage = "Field [" + point.x + ":" + point.y + "] " + message + "\n";
+            logOutput.append(logMessage);
         }
     }
 
@@ -40,6 +39,11 @@ public class Logger {
         if(isSetUp()) {
             logOutput.setText("");
         }
+    }
+
+    public void newRound(int counter) {
+        clear();
+        info("Round: " + Integer.toString(counter));
     }
 
     private boolean isSetUp() {
