@@ -24,13 +24,15 @@ public class Logger {
 
     public void info (Point point, String message) {
         if (isSetUp()) {
-            String logMessage = "Field [" + point.x + ":" + point.y + "] " + message + "\n";
-            logOutput.append(logMessage);
+            String logMessage = "Field [" + point.x + ":" + point.y + "] " + message;
+            System.out.println(logMessage);
+            logOutput.append(logMessage + "\n");
         }
     }
 
     public void info(String message) {
         if (isSetUp()) {
+            System.out.println(message);
             logOutput.append(message + "\n");
         }
     }

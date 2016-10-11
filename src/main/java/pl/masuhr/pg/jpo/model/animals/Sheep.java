@@ -6,11 +6,22 @@ import pl.masuhr.pg.jpo.model.Animal;
 import java.awt.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 06.10.2016.
  */
 public class Sheep extends Animal {
+
+    public Sheep() {
+        super(null, null);
+        prepareAnimal();
+    }
+
     public Sheep(World myWorld, Point point) {
         super(myWorld, point);
-        setInitiative(5);
+        prepareAnimal();
+    }
+
+    private void prepareAnimal() {
+        setStrength(5);
     }
 }

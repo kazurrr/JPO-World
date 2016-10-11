@@ -1,43 +1,47 @@
 package pl.masuhr.pg.jpo.controller;
 
+import pl.masuhr.pg.jpo.controller.queue.IQueue;
+import pl.masuhr.pg.jpo.controller.queue.ListQueue;
 import pl.masuhr.pg.jpo.model.Organism;
 import pl.masuhr.pg.jpo.model.animals.Sheep;
 import pl.masuhr.pg.jpo.model.animals.Wolf;
+import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
+import java.util.List;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 01.10.2016.
  */
-public class World implements Iterable<Organism> {
+public class World {
     private int sizeOfWorld;
-    private Queue queue = new Queue();
+    private IQueue queue = new ListQueue();
     private Logger logger = Logger.getInstance();
-
-    @Override
-    public Iterator<Organism> iterator() {
-        return queue.iterator();
-    }
 
     public World(int sizeOfWorld) {
         this.sizeOfWorld = sizeOfWorld;
         addRandomOrganisms();
     }
 
+    public void removeOrganism(Organism organism) {
+        queue.remove(organism);
+//        organism.remove();
+    }
+
     private void addRandomOrganisms() {
-        addNewOrganism(new Wolf(this, new Point(1, 1)));
-        addNewOrganism(new Wolf(this, new Point(1, 1)));
-        addNewOrganism(new Sheep(this, new Point(0, 1)));
-        addNewOrganism(new Sheep(this, new Point(4, 4)));
-        addNewOrganism(new Sheep(this, new Point(6, 1)));
+        addNewOrganism(new Wolf(this, new Position().getRandom()));
+        addNewOrganism(new Wolf(this, new Position().getRandom()));
+        addNewOrganism(new Sheep(this, new Position().getRandom()));
+        addNewOrganism(new Sheep(this, new Position().getRandom()));
+        addNewOrganism(new Sheep(this, new Position().getRandom()));
     }
 
     public void addNewOrganism(Organism organism) {
-        Point point = organism.getLocation();
+        Point point = organism.getPosition();
 
-        if (queue.isFieldOccupied(point)) {
+        if (isFieldOccupied(point)) {
             logger.info(point, "is occupied, cannot create new organism.");
         } else if (!isPointInWorld(point)) {
             logger.info(point, "do not belong to world.");
@@ -47,16 +51,35 @@ public class World implements Iterable<Organism> {
         }
     }
 
-    public boolean isPointInWorld(Point point) {
-        return point.x < sizeOfWorld && point.y < sizeOfWorld;
+    public boolean isFieldOccupied(Point point) {
+        return queue.isFieldOccupied(point);
     }
 
+    public Organism getOrganismFromField(Point point) {
+        return queue.getOrganismFromField(point);
+    }
+
+    public boolean isPointInWorld(Point point) {
+        boolean plus = point.x < sizeOfWorld && point.y < sizeOfWorld;
+        boolean minus = point.x >= 0 && point.y >= 0;
+        return plus && minus;
+    }
 
     public void performRound() {
-        queue.sort();
-        for (Organism currentOrganism : queue) {
-            currentOrganism.action();
-            System.out.println(currentOrganism.draw() + "   Ini:" + currentOrganism.initiative);
+        queue.toStart();
+        while (queue.hasNext()) {
+            queue.next().action();
         }
+
+//        for (Organism currentOrganism : queue.iterator()) {        //ToDo java.util.ConcurrentModificationException
+//            if (currentOrganism.isMarkToRemove())
+//                queue.remove(currentOrganism);
+//            else
+//                currentOrganism.action();
+//        }
+    }
+
+    public Iterable<Organism> organismIterable() {
+        return queue.iterator();
     }
 }

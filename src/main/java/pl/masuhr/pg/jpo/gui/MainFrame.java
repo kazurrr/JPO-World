@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import static pl.masuhr.pg.jpo.gui.Properties.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 05.10.2016.
  */
 public class MainFrame extends JFrame {
@@ -28,7 +29,7 @@ public class MainFrame extends JFrame {
     private Logger logger = Logger.getInstance();
     private WorldFrame worldFrame;
     private World greatWorld;
-    private int roundCouner = 1;
+    private int roundCounter = 1;
 
     public MainFrame() {
         super(WINDOW_TITLE);
@@ -68,10 +69,10 @@ public class MainFrame extends JFrame {
         nextRoundButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                logger.newRound(roundCouner);
+                logger.newRound(roundCounter);
                 greatWorld.performRound();
                 renderWorld();
-                roundCouner++;
+                roundCounter++;
             }
         });
     }

@@ -5,47 +5,63 @@ import pl.masuhr.pg.jpo.controller.World;
 import java.awt.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 02.10.2016.
  */
 public abstract class Organism implements Comparable<Organism> {
-    private int strength;
-    public int initiative;
-    private int x;
-    private int y;
-    private int symbol;
-    public int age;
-    private World myWorld;
+    protected int strength;
+    protected int initiative;
+    protected Point position;
+    protected int age;
+
+    public void setMyWorld(World myWorld) {
+        this.myWorld = myWorld;
+    }
+
+    protected World myWorld;
+    protected boolean removed = false;
 
     public abstract void action();
 
-    public abstract void isAttackedBy();
+    public abstract void collisionWith(Organism organism);
 
-    public Organism(World myWorld, Point point) {
+    private Organism() {
+
+    }
+
+    public Organism(World myWorld, Point position) {
         this.myWorld = myWorld;
-        this.x = point.x;
-        this.y = point.y;
+        this.position = position;
 
         this.age = 1;
     }
 
-    protected void setSymbol(int symbol) {
-        this.symbol = symbol;
+    public void remove() {
+        this.removed = true;
     }
 
-    public String draw() {
-        return this.getClass().getSimpleName();
+    public boolean isMarkToRemove() {
+        return this.removed;
     }
 
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setInitiative(int initiative) {
+    protected void setPosition(Point position) {
+        this.position = position;
+    }
+
+    protected void setInitiative(int initiative) {
         this.initiative = initiative;
     }
 
-    public Point getLocation() {
-        return new Point(x, y);
+    public Point getPosition() {
+        return position;
+    }
+
+    public String draw() {
+        return this.getClass().getSimpleName();
     }
 
     public int compareTo(Organism opponent) {

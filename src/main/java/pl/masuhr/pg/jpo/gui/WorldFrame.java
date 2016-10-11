@@ -13,6 +13,7 @@ import static pl.masuhr.pg.jpo.gui.Properties.FIELD_SIZE;
 import static pl.masuhr.pg.jpo.gui.Properties.SIZE_OF_FIELD;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 02.10.2016.
  */
 public class WorldFrame {
@@ -57,9 +58,11 @@ public class WorldFrame {
     }
 
     public void render(World world) {
+        Iterable<Organism> allOrganisms = world.organismIterable();
         clean();
-        for (Organism organism : world) {
-            setIcon(organism);
+        for (Organism organism : allOrganisms) {
+            if (!organism.isMarkToRemove())
+                setIcon(organism);
         }
     }
 
@@ -74,8 +77,8 @@ public class WorldFrame {
     private void setIcon(Organism organism) {
         try {
             Image img = ImageIO.read(getClass().getClassLoader().getResource(organism.draw() + ".jpg"));
-            buttons[organism.getLocation().x][organism.getLocation().y].setIcon(new ImageIcon(img));
-        } catch (IOException | NullPointerException e) {
+            buttons[organism.getPosition().x][organism.getPosition().y].setIcon(new ImageIcon(img));
+        } catch (IOException | NullPointerException | IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
