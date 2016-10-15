@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 
 import static pl.masuhr.pg.jpo.gui.Properties.FIELD_MARGIN;
 import static pl.masuhr.pg.jpo.gui.Properties.FIELD_SIZE;
@@ -76,7 +77,8 @@ public class WorldFrame {
 
     private void setIcon(Organism organism) {
         try {
-            Image img = ImageIO.read(getClass().getClassLoader().getResource(organism.draw() + ".jpg"));
+            URL pathToImage = getClass().getClassLoader().getResource(organism.draw() + ".jpg");
+            Image img = ImageIO.read(pathToImage);
             buttons[organism.getPosition().x][organism.getPosition().y].setIcon(new ImageIcon(img));
         } catch (IOException | NullPointerException | IllegalArgumentException e) {
             e.printStackTrace();
