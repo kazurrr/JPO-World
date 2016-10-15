@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initComponents() {
-        worldFrame = new WorldFrame(worldPanel, SIZE_OF_WORLD);
+        worldFrame = new WorldFrame(worldPanel);
         add(rootPanel);
         logger.setUpLogger(logArea);
 
@@ -58,7 +58,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initWorld() {
-        greatWorld = new World(SIZE_OF_WORLD);
+        greatWorld = new World();
     }
 
     private void renderWorld() {

@@ -19,13 +19,12 @@ import static pl.masuhr.pg.jpo.gui.Properties.SIZE_OF_FIELD;
  */
 public class WorldFrame {
     private JPanel panel;
-    private int sizeOfWorld;
+    private int sizeOfWorld = Properties.WORLD_SIZE;
     private JPanel buttonPanel;
     private JButton buttons[][];
 
-    public WorldFrame(JPanel panel, int sizeOfWorld) {
+    public WorldFrame(JPanel panel) {
         this.panel = panel;
-        this.sizeOfWorld = sizeOfWorld;
 
         prepareButtonPanel();
         createButtons();
