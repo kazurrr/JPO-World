@@ -42,7 +42,7 @@ public class Position {
         }
     }
 
-    protected List<Point> getAllFreeAdjacentFields(Point currentPoint) {
+    private List<Point> getAllFreeAdjacentFields(Point currentPoint) {
         List<Point> freePositions = new ArrayList<>();
 
         for (int x = currentPoint.x - 1; x <= currentPoint.x + 1; x++) {

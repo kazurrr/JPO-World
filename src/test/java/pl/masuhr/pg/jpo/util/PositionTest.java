@@ -64,7 +64,21 @@ public class PositionTest {
 
     @Test
     @Repeat(30)
-    public void returnThreePointsWhenAnimalInCorner() {
+    public void returnNullWhenThereIsNoFreeField() {
+        //Prepare
+        Point currentPoint = sut.getRandom();
+        doReturn(true).when(world).isFieldOccupied(any(Point.class));
+
+        //Call
+        Point newPosition = sut.getNextFree(world, currentPoint);
+
+        //Verify
+        assertThat(newPosition, is(nullValue()));
+    }
+
+    @Test
+    @Repeat(30)
+    public void returnFreeNextPointWhenAnimalInCorner() {
         //Prepare
         Point myPosition = new Point(0, 0);
         doReturn(false).when(world).isFieldOccupied(any(Point.class));
