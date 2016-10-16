@@ -42,13 +42,15 @@ public class Position {
         }
     }
 
-    private List<Point> getAllFreeAdjacentFields(Point currentPoint) {
+    protected List<Point> getAllFreeAdjacentFields(Point currentPoint) {
         List<Point> freePositions = new ArrayList<>();
 
         for (int x = currentPoint.x - 1; x <= currentPoint.x + 1; x++) {
             for (int y = currentPoint.y - 1; y <= currentPoint.y + 1; y++) {
                 Point check = new Point(x, y);
-                if (isPointInWorld(check) && !world.isFieldOccupied(check) && currentPoint != check) {
+
+                if (isPointInWorld(check) && !world.isFieldOccupied(check) &&
+                        !(check.x == currentPoint.x && check.y == currentPoint.y)) {
                     freePositions.add(new Point(x, y));
                 }
             }
@@ -58,8 +60,8 @@ public class Position {
     }
 
     private Point getRandomAdjacentField(Point currentPoint) {
-        int x = currentPoint.x + getRandomInt(-1, 2);
-        int y = currentPoint.y + getRandomInt(-1, 2);
+        int x = currentPoint.x + getRandomInt(-1, 1);
+        int y = currentPoint.y + getRandomInt(-1, 1);
 
         return new Point(x, y);
     }

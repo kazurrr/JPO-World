@@ -28,11 +28,11 @@ import java.awt.Point;
 @RunWith(JUnitParamsRunner.class)
 public class AnimalTest {
 
-    @Mock
-    World world;
-
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Mock
+    World world;
 
     @Test
     @Parameters(method = "returnPairWeakAndStrongAnimal")
