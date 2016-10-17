@@ -6,6 +6,7 @@ import pl.masuhr.pg.jpo.model.Animal;
 import java.awt.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 06.10.2016.
  */
 public class Wolf extends Animal {
