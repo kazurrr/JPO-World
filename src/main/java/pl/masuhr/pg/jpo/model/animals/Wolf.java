@@ -9,7 +9,6 @@ import java.awt.*;
  * Created by karol on 06.10.2016.
  */
 public class Wolf extends Animal {
-    private int strength = 9;
 
     public Wolf() {
         super(null, null);
@@ -22,5 +21,6 @@ public class Wolf extends Animal {
 
     private void prepareAnimal() {
         setStrength(9);
+        setInitiative(5);
     }
 }

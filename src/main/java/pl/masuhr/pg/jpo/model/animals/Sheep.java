@@ -23,5 +23,6 @@ public class Sheep extends Animal {
 
     private void prepareAnimal() {
         setStrength(5);
+        setInitiative(4);
     }
 }
