@@ -56,6 +56,12 @@ public class ListQueue implements IQueue {
             if (current.getPosition().equals(point))
                 return true;
         }
+
+        for (Organism current : organismsToAdd) {
+            if (current.getPosition().equals(point))
+                return true;
+        }
+
         return false;
     }
 
