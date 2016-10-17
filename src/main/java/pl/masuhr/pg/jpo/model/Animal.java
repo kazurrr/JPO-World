@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by karol on 01.10.2016.
  */
 public class Animal extends Organism {
-    private int paralysis;
+    protected int paralysis;
     private Logger logger = Logger.getInstance();
 
     public Animal(World myWorld, Point point) {
@@ -22,6 +22,12 @@ public class Animal extends Organism {
 
     @Override
     public void action() {
+        if (paralysis > 0) {
+            paralysis--;
+            logger.info(this.getPosition(), draw() + " is paralyzed. Cannot move.");
+            return;
+        }
+
         Point newPosition = new Position().getNext(getPosition());
 
         if (myWorld.isFieldOccupied(newPosition)) {
@@ -63,6 +69,7 @@ public class Animal extends Organism {
         Point pointToLog = new Point();
 
         int fightResult = ((Integer) this.strength).compareTo(opponent.strength);
+        boolean opponentDied = false;
 
         switch (fightResult) {
             case -1:
@@ -76,8 +83,18 @@ public class Animal extends Organism {
                 myWorld.removeOrganism(opponent);
                 logMessage += this.draw() + " won.";
                 pointToLog = this.getPosition();
+                opponentDied = true;
                 break;
         }
         logger.info(pointToLog, draw() + logMessage);
+        opponent.afterAttack(this, opponentDied);
+    }
+
+    protected void afterAttack(Animal opponent, boolean amIDead) {
+
+    }
+
+    public void setParalysis() {
+        paralysis++;
     }
 }
