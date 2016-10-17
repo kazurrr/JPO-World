@@ -44,11 +44,15 @@ public abstract class Organism implements Comparable<Organism> {
         return this.removed;
     }
 
+    public int getStrength() {
+        return this.strength;
+    }
+
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    protected void setPosition(Point position) {
+    public void setPosition(Point position) {
         this.position = position;
     }
 
