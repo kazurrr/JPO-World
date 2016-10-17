@@ -15,6 +15,7 @@ public class Wolf extends Animal {
         super(null, null);
         prepareAnimal();
     }
+
     public Wolf(World myWorld, Point point) {
         super(myWorld, point);
         prepareAnimal();

@@ -20,6 +20,7 @@ public class Animal extends Organism {
         paralysis = 0;
     }
 
+    @Override
     public void action() {
         Point newPosition = new Position().getNext(getPosition());
 
@@ -31,6 +32,7 @@ public class Animal extends Organism {
         age++;
     }
 
+    @Override
     public void collisionWith(Organism opponent) {
         if (opponent.getClass().isInstance(this))
             multiplicationWith(opponent);

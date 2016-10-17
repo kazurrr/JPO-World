@@ -7,6 +7,7 @@ import pl.masuhr.pg.jpo.gui.Properties;
 import pl.masuhr.pg.jpo.model.Organism;
 import pl.masuhr.pg.jpo.model.animals.Sheep;
 import pl.masuhr.pg.jpo.model.animals.Wolf;
+import pl.masuhr.pg.jpo.model.plants.Grass;
 import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
@@ -32,11 +33,10 @@ public class World {
     }
 
     private void addRandomOrganisms() {
-        addNewOrganism(new Wolf(this, new Position().getRandom()));
-        addNewOrganism(new Wolf(this, new Position().getRandom()));
         addNewOrganism(new Sheep(this, new Position().getRandom()));
-        addNewOrganism(new Sheep(this, new Position().getRandom()));
-        addNewOrganism(new Sheep(this, new Position().getRandom()));
+
+        addNewOrganism(new Grass(this, new Position().getRandom()));
+        queue.mergeAddList();
     }
 
     public void addNewOrganism(Organism organism) {
@@ -71,6 +71,7 @@ public class World {
         while (queue.hasNext()) {
             queue.next().action();
         }
+        queue.mergeAddList();
     }
 
     public Iterable<Organism> organismIterable() {
