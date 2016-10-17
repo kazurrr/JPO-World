@@ -18,6 +18,7 @@ import pl.masuhr.pg.jpo.util.Position;
 import java.awt.*;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -70,5 +71,39 @@ public class ListQueueTest {
         verify(first, times(1)).action();
         verify(second, times(1)).action();
         verify(third, times(1)).action();
+    }
+
+    @Test
+    public void afterNewOrganismIsAddedItWontPerformAction() {
+        //Prepare
+        doReturn(false).when(world).isFieldOccupied(any(Point.class));
+        Wolf first = spy(new Wolf(world, new Point(0, 0)));
+        Wolf second = spy(new Wolf(world, new Point(0, 1)));
+        Wolf third = spy(new Wolf(world, new Point(0, 1)));
+
+        sut.add(first);
+        sut.add(second);
+        sut.toStart();
+
+        //Call
+        sut.next().action();
+        //Verify
+        verify(first, times(1)).action();
+        verify(second, times(0)).action();
+
+        //Call
+        sut.next().action();
+        //Verify
+        verify(first, times(1)).action();
+        verify(second, times(1)).action();
+
+        //Call
+        sut.add(third);
+
+        //Verify
+        assertThat(sut.hasNext(), is(false));
+        verify(first, times(1)).action();
+        verify(second, times(1)).action();
+        verify(third, times(0)).action();
     }
 }

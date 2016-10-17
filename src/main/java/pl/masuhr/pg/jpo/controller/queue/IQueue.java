@@ -11,6 +11,8 @@ import java.awt.*;
 public interface IQueue {
     void add(Organism organism);
 
+    void mergeAddList();
+
     void remove(Organism organism);
 
     void toStart();

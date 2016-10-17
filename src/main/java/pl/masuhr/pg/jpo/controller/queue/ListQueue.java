@@ -12,11 +12,18 @@ import java.util.List;
  */
 public class ListQueue implements IQueue {
     private List<Organism> allOrganisms = new ArrayList<>();
+    private List<Organism> organismsToAdd = new ArrayList<>();
     private int currentIndex = -1;
 
     @Override
     public void add(Organism organism) {
-        allOrganisms.add(organism);
+        organismsToAdd.add(organism);
+    }
+
+    @Override
+    public void mergeAddList() {
+        allOrganisms.addAll(organismsToAdd);
+        organismsToAdd = new ArrayList<>();
         Collections.sort(allOrganisms);
     }
 
@@ -28,6 +35,7 @@ public class ListQueue implements IQueue {
 
     @Override
     public void toStart() {
+        mergeAddList();
         currentIndex = -1;
     }
 

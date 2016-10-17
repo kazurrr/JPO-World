@@ -22,6 +22,11 @@ public class ArrayQueue implements IQueue {
     }
 
     @Override
+    public void mergeAddList() {
+
+    }
+
+    @Override
     public void remove(Organism organism) {
         Point position = organism.getPosition();
         allOrganisms[position.x][position.y] = null;
