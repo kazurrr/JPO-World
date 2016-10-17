@@ -2,24 +2,20 @@ package pl.masuhr.pg.jpo.controller;
 
 import pl.masuhr.pg.jpo.controller.queue.IQueue;
 import pl.masuhr.pg.jpo.controller.queue.ListQueue;
-import pl.masuhr.pg.jpo.gui.*;
-import pl.masuhr.pg.jpo.gui.Properties;
 import pl.masuhr.pg.jpo.model.Organism;
-import pl.masuhr.pg.jpo.model.animals.Sheep;
-import pl.masuhr.pg.jpo.model.animals.Wolf;
-import pl.masuhr.pg.jpo.model.plants.Grass;
+import pl.masuhr.pg.jpo.model.animals.*;
+import pl.masuhr.pg.jpo.model.plants.*;
 import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
+
+import static pl.masuhr.pg.jpo.gui.Properties.WORLD_SIZE;
 
 /**
  * JPO-Zaliczenie
  * Created by karol on 01.10.2016.
  */
 public class World {
-    private int sizeOfWorld = Properties.WORLD_SIZE;
     private IQueue queue = new ListQueue();
     private Logger logger = Logger.getInstance();
 
@@ -29,13 +25,12 @@ public class World {
 
     public void removeOrganism(Organism organism) {
         queue.remove(organism);
-//        organism.remove();
     }
 
     private void addRandomOrganisms() {
         addNewOrganism(new Sheep(this, new Position().getRandom()));
 
-        addNewOrganism(new Grass(this, new Position().getRandom()));
+        addNewOrganism(new Belladonna(this, new Position().getRandom()));
         queue.mergeAddList();
     }
 
@@ -61,7 +56,7 @@ public class World {
     }
 
     public boolean isPointInWorld(Point point) {
-        boolean plus = point.x < sizeOfWorld && point.y < sizeOfWorld;
+        boolean plus = point.x < WORLD_SIZE && point.y < WORLD_SIZE;
         boolean minus = point.x >= 0 && point.y >= 0;
         return plus && minus;
     }
