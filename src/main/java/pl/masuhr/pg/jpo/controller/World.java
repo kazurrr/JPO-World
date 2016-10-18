@@ -8,6 +8,7 @@ import pl.masuhr.pg.jpo.model.plants.*;
 import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
+
 import static pl.masuhr.pg.jpo.util.Position.isPointInWorld;
 
 /**
@@ -15,18 +16,18 @@ import static pl.masuhr.pg.jpo.util.Position.isPointInWorld;
  * Created by karol on 01.10.2016.
  */
 public class World {
+    private int round = 1;
     private IQueue queue = new ListQueue();
     private Logger logger = Logger.getInstance();
 
     public World() {
-        addRandomOrganisms();
     }
 
     public void removeOrganism(Organism organism) {
         queue.remove(organism);
     }
 
-    private void addRandomOrganisms() {
+    public void addRandomOrganisms() {
         int howManyNewAnimals = 3;
         for (int i = 0; i < howManyNewAnimals; i++) {
             addNewOrganism(new Hedgehog(this, new Position().getRandom()));
@@ -85,6 +86,7 @@ public class World {
             queue.next().action();
         }
         queue.mergeAddList();
+        round++;
     }
 
     public Iterable<Organism> organismIterable() {
@@ -93,5 +95,13 @@ public class World {
 
     public IQueue getQueue() {
         return queue;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
     }
 }

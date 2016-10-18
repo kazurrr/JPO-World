@@ -3,6 +3,7 @@ package pl.masuhr.pg.jpo.gui;
 import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
 import pl.masuhr.pg.jpo.io.WorldDeserializer;
+import pl.masuhr.pg.jpo.io.model.WorldParsingException;
 import pl.masuhr.pg.jpo.io.WorldSerializer;
 
 import javax.swing.*;
@@ -31,7 +32,6 @@ public class MainFrame extends JFrame {
     private Logger logger = Logger.getInstance();
     private WorldFrame worldFrame;
     private World greatWorld;
-    private int roundCounter = 1;
 
     public MainFrame() {
         super(WINDOW_TITLE);
@@ -61,6 +61,7 @@ public class MainFrame extends JFrame {
 
     private void initWorld() {
         greatWorld = new World();
+        greatWorld.addRandomOrganisms();
     }
 
     private void renderWorld() {
@@ -71,10 +72,9 @@ public class MainFrame extends JFrame {
         nextRoundButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                logger.newRound(roundCounter);
+                logger.newRound(greatWorld.getRound());
                 greatWorld.performRound();
                 renderWorld();
-                roundCounter++;
             }
         });
 
@@ -89,8 +89,14 @@ public class MainFrame extends JFrame {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WorldDeserializer worldDeserializer = new WorldDeserializer();
-                World newWorld = worldDeserializer.load();
+                try {
+                    WorldDeserializer worldDeserializer = new WorldDeserializer();
+                    World newWorld = worldDeserializer.load();
+                    greatWorld = newWorld;
+                    renderWorld();
+                } catch (WorldParsingException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
