@@ -2,6 +2,8 @@ package pl.masuhr.pg.jpo.gui;
 
 import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
+import pl.masuhr.pg.jpo.io.WorldDeserializer;
+import pl.masuhr.pg.jpo.io.WorldSerializer;
 
 import javax.swing.*;
 
@@ -73,6 +75,22 @@ public class MainFrame extends JFrame {
                 greatWorld.performRound();
                 renderWorld();
                 roundCounter++;
+            }
+        });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WorldSerializer worldSerializer = new WorldSerializer();
+                worldSerializer.save(greatWorld);
+            }
+        });
+
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WorldDeserializer worldDeserializer = new WorldDeserializer();
+                World newWorld = worldDeserializer.load();
             }
         });
     }

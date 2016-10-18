@@ -3,12 +3,15 @@ package pl.masuhr.pg.jpo.model;
 import pl.masuhr.pg.jpo.controller.World;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * JPO-Zaliczenie
  * Created by karol on 02.10.2016.
  */
-public abstract class Organism implements Comparable<Organism> {
+public abstract class Organism implements Comparable<Organism>, Serializable{
+    private static final long serialVersionUID = 1L;
+
     protected int strength;
     protected int initiative;
     protected Point position;
@@ -73,5 +76,17 @@ public abstract class Organism implements Comparable<Organism> {
             return ((Integer) opponent.age).compareTo(this.age);
         else
             return ((Integer) opponent.initiative).compareTo(this.initiative);
+    }
+
+    @Override
+    public String toString() {
+        String separator = "|";
+
+        return "type:" + draw() + separator +
+                "strength:" + strength + separator +
+                "initiative:" + initiative + separator +
+                "x:" + position.x + separator +
+                "y:" + position.y + separator +
+                "age:" + age;
     }
 }

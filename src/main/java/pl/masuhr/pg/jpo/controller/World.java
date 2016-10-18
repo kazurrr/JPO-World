@@ -90,4 +90,8 @@ public class World {
     public Iterable<Organism> organismIterable() {
         return queue.iterator();
     }
+
+    public IQueue getQueue() {
+        return queue;
+    }
 }
