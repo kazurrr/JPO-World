@@ -43,7 +43,7 @@ public class Animal extends Organism {
         if (opponent.getClass().isInstance(this))
             multiplicationWith(opponent);
         else
-            attackBy((Animal) opponent);
+            attackBy((Animal) opponent);    //ToDo refactor, this should not be called from opponent object
     }
 
     private void multiplicationWith(Organism organism) {

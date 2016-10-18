@@ -10,13 +10,12 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Position {
-    private int sizeOfWorld = WORLD_SIZE;
     private World world;
     private Point currentPosition;
 
     public Point getRandom() {
-        int x = getRandomInt(0, sizeOfWorld - 1);
-        int y = getRandomInt(0, sizeOfWorld - 1);
+        int x = getRandomInt(0, WORLD_SIZE - 1);
+        int y = getRandomInt(0, WORLD_SIZE - 1);
 
         return new Point(x, y);
     }
@@ -66,8 +65,8 @@ public class Position {
         return new Point(x, y);
     }
 
-    private boolean isPointInWorld(Point point) {
-        boolean plus = point.x < sizeOfWorld && point.y < sizeOfWorld;
+    public static boolean isPointInWorld(Point point) {
+        boolean plus = point.x < WORLD_SIZE && point.y < WORLD_SIZE;
         boolean minus = point.x >= 0 && point.y >= 0;
         return plus && minus;
     }

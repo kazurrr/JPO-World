@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class Properties {
     public static final String WINDOW_TITLE = "Karol Masuhr 152660";
-    public static final int WORLD_SIZE = 5;
+    public static final int WORLD_SIZE = 6;
 
     public static final int LOG_AREA_WIDTH = 450;
     public static final int SIZE_OF_FIELD = 30;

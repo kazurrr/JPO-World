@@ -8,8 +8,7 @@ import pl.masuhr.pg.jpo.model.plants.*;
 import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
-
-import static pl.masuhr.pg.jpo.gui.Properties.WORLD_SIZE;
+import static pl.masuhr.pg.jpo.util.Position.isPointInWorld;
 
 /**
  * JPO-Zaliczenie
@@ -28,9 +27,34 @@ public class World {
     }
 
     private void addRandomOrganisms() {
-        addNewOrganism(new Sheep(this, new Position().getRandom()));
+        int howManyNewAnimals = 3;
+        for (int i = 0; i < howManyNewAnimals; i++) {
+            addNewOrganism(new Hedgehog(this, new Position().getRandom()));
+        }
 
-        addNewOrganism(new Belladonna(this, new Position().getRandom()));
+        for (int i = 0; i < howManyNewAnimals; i++) {
+            addNewOrganism(new Sheep(this, new Position().getRandom()));
+        }
+
+        for (int i = 0; i < howManyNewAnimals; i++) {
+            addNewOrganism(new Viper(this, new Position().getRandom()));
+        }
+
+        for (int i = 0; i < howManyNewAnimals; i++) {
+            addNewOrganism(new Wolf(this, new Position().getRandom()));
+        }
+
+        int howManyNewPlants = 2;
+
+        for (int i = 0; i < howManyNewPlants; i++) {
+            addNewOrganism(new Belladonna(this, new Position().getRandom()));
+        }
+        for (int i = 0; i < howManyNewPlants; i++) {
+            addNewOrganism(new Grass(this, new Position().getRandom()));
+        }
+        for (int i = 0; i < howManyNewPlants; i++) {
+            addNewOrganism(new Guarana(this, new Position().getRandom()));
+        }
         queue.mergeAddList();
     }
 
@@ -53,12 +77,6 @@ public class World {
 
     public Organism getOrganismFromField(Point point) {
         return queue.getOrganismFromField(point);
-    }
-
-    public boolean isPointInWorld(Point point) {
-        boolean plus = point.x < WORLD_SIZE && point.y < WORLD_SIZE;
-        boolean minus = point.x >= 0 && point.y >= 0;
-        return plus && minus;
     }
 
     public void performRound() {
