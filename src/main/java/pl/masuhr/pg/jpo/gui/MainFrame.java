@@ -93,6 +93,7 @@ public class MainFrame extends JFrame {
                     WorldDeserializer worldDeserializer = new WorldDeserializer();
                     World newWorld = worldDeserializer.load();
                     greatWorld = newWorld;
+                    Properties.WORLD_SIZE = worldDeserializer.worldSize();
                     renderWorld();
                 } catch (WorldParsingException e1) {
                     e1.printStackTrace();
