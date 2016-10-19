@@ -18,6 +18,7 @@ import static pl.masuhr.pg.jpo.gui.Properties.*;
  * JPO-Zaliczenie
  * Created by karol on 05.10.2016.
  */
+//ToDo refactor this class to remove Intellij GUI builder
 public class MainFrame extends JFrame {
     private static final int SIZE_OF_WORLD = 5;
 
