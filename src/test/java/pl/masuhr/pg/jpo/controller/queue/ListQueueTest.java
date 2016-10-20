@@ -1,27 +1,22 @@
 package pl.masuhr.pg.jpo.controller.queue;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+
+import static org.mockito.Mockito.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import pl.masuhr.pg.jpo.controller.World;
-import pl.masuhr.pg.jpo.model.Animal;
 import pl.masuhr.pg.jpo.model.animals.Sheep;
 import pl.masuhr.pg.jpo.model.animals.Wolf;
-import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
 
 /**
  * JPO-Zaliczenie
@@ -43,8 +38,8 @@ public class ListQueueTest {
         //Prepare
         doReturn(false).when(world).isFieldOccupied(any(Point.class));
         Wolf first = spy(new Wolf(world, new Point(0, 0)));
-        Wolf second = spy(new Wolf(world, new Point(0, 1)));
-        Sheep third = spy(new Sheep(world, new Point(1, 1)));
+        Wolf second = spy(new Wolf(world, new Point(0, 0)));
+        Sheep third = spy(new Sheep(world, new Point(0, 0)));
 
         sut.add(first);
         sut.add(second);

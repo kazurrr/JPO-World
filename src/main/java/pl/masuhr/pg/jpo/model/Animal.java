@@ -5,14 +5,13 @@ import pl.masuhr.pg.jpo.controller.World;
 import pl.masuhr.pg.jpo.util.Position;
 
 import java.awt.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * JPO-Zaliczenie
  * Created by karol on 01.10.2016.
  */
 public class Animal extends Organism {
-    protected int paralysis;
+    private int paralysis;
     private Logger logger = Logger.getInstance();
 
     public Animal(World myWorld, Point point) {
@@ -46,7 +45,7 @@ public class Animal extends Organism {
             attackBy((Animal) opponent);    //ToDo refactor, this should not be called from opponent object
     }
 
-    private void multiplicationWith(Organism organism) {
+    protected void multiplicationWith(Organism organism) {
         Point newAnimalPosition = new Position().getNextFree(myWorld, organism.getPosition());
         if (newAnimalPosition == null) {
             return;

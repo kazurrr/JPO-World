@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 public class PropertiesTest {
 
     @Test
-    public void worldIsGreatherThan3x3() {
+    public void worldIsGreaterThan3x3() {
         assertThat(Properties.WORLD_SIZE, is(greaterThanOrEqualTo(3)));
     }
 }

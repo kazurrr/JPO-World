@@ -60,6 +60,9 @@ public class World {
     }
 
     public void addNewOrganism(Organism organism) {
+        if (organism == null)
+            return;
+
         Point point = organism.getPosition();
 
         if (isFieldOccupied(point)) {
