@@ -85,8 +85,12 @@ public class World {
         while (queue.hasNext()) {
             queue.next().action();
         }
-        queue.mergeAddList();
+        mergeAddList();
         round++;
+    }
+
+    public void mergeAddList() {
+        queue.mergeAddList();
     }
 
     public Iterable<Organism> organismIterable() {

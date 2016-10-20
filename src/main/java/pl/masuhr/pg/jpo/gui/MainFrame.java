@@ -69,34 +69,24 @@ public class MainFrame extends JFrame {
     }
 
     private void bindActions() {
-        nextRoundButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logger.newRound(greatWorld.getRound());
-                greatWorld.performRound();
+        nextRoundButton.addActionListener(e -> {
+            logger.newRound(greatWorld.getRound());
+            greatWorld.performRound();
+            renderWorld();
+        });
+
+        saveButton.addActionListener(e -> {
+            WorldSerializer worldSerializer = new WorldSerializer();
+            worldSerializer.save(greatWorld);
+        });
+
+        loadButton.addActionListener(e -> {
+            try {
+                WorldDeserializer worldDeserializer = new WorldDeserializer();
+                greatWorld = worldDeserializer.load();
                 renderWorld();
-            }
-        });
-
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                WorldSerializer worldSerializer = new WorldSerializer();
-                worldSerializer.save(greatWorld);
-            }
-        });
-
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    WorldDeserializer worldDeserializer = new WorldDeserializer();
-                    World newWorld = worldDeserializer.load();
-                    greatWorld = newWorld;
-                    renderWorld();
-                } catch (WorldParsingException e1) {
-                    e1.printStackTrace();
-                }
+            } catch (WorldParsingException e1) {
+                e1.printStackTrace();
             }
         });
     }

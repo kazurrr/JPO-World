@@ -57,6 +57,7 @@ public class WorldDeserializer {
             Organism newOrganismInstance = getInstance(organism);
             newWorld.addNewOrganism(newOrganismInstance);
         }
+        newWorld.mergeAddList();
     }
 
     private Organism getInstance(String organismAttributes) throws WorldParsingException {
