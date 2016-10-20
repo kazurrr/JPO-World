@@ -13,7 +13,7 @@ import java.util.Map;
  * type:Wolf|strength:9|initiative:5|x:4|y:0|age:1
  */
 public class OrganismParser {
-    private Map organismAttr = new Hashtable();
+    private Map<String, String> organismAttr = new Hashtable<>();
 
     public OrganismParser(String args) {
         String[] allAttributes= args.split("\\|");
@@ -26,7 +26,7 @@ public class OrganismParser {
 
     public String getString(String key) throws WorldParsingException {
         if(organismAttr.containsKey(key)) {
-            return (String)organismAttr.get(key);
+            return organismAttr.get(key);
         }
         else {
             throw new WorldParsingException("Cannot read organism attribute");
@@ -35,7 +35,7 @@ public class OrganismParser {
 
     public int getInt(String key) throws WorldParsingException {
         if(organismAttr.containsKey(key)) {
-            return Integer.parseInt((String)organismAttr.get(key));
+            return Integer.parseInt(organismAttr.get(key));
         }
         else {
             throw new WorldParsingException("Cannot read organism attribute");

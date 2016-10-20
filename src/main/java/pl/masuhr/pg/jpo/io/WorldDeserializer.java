@@ -31,6 +31,10 @@ public class WorldDeserializer {
         return newWorld;
     }
 
+    public int worldSize() {
+        return sizeOfWorld;
+    }
+
     private void readContentFromFile() throws WorldParsingException {
         try {
             String fileContent = new String(Files.readAllBytes(Paths.get(FILE_PATH)));
