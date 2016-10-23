@@ -69,18 +69,23 @@ public class WorldFrame {
     private void clean() {
         for (int i = 0; i < sizeOfWorld; i++) {
             for (int j = 0; j < sizeOfWorld; j++) {
-                buttons[i][j].setIcon(null);
+                buttons[i][j].setIcon(new ImageIcon(getImage("Blank.jpg")));
             }
         }
     }
 
     private void setIcon(Organism organism) {
+        Image img = getImage(organism.draw() + ".jpg");
+        buttons[organism.getPosition().x][organism.getPosition().y].setIcon(new ImageIcon(img));
+    }
+
+    private Image getImage(String name) {
         try {
-            URL pathToImage = getClass().getClassLoader().getResource(organism.draw() + ".jpg");
-            Image img = ImageIO.read(pathToImage);
-            buttons[organism.getPosition().x][organism.getPosition().y].setIcon(new ImageIcon(img));
-        } catch (IOException | NullPointerException | IllegalArgumentException e) {
+            URL pathToImage = getClass().getClassLoader().getResource(name);
+            return ImageIO.read(pathToImage);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
