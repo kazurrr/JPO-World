@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ListQueue implements IQueue {
     private List<Organism> allOrganisms = new ArrayList<>();
-    private List<Organism> organismsToAdd = new ArrayList<>();
+    private List<Organism> organismsToAdd = new ArrayList<>();      //ToDo try to remove this variable
     private int currentIndex = -1;
 
     @Override
@@ -71,11 +71,21 @@ public class ListQueue implements IQueue {
             if (current.getPosition().equals(point))
                 return current;
         }
+
+        for (Organism current : organismsToAdd) {
+            if (current.getPosition().equals(point))
+                return current;
+        }
         return null;
     }
 
     @Override
     public Iterable<Organism> iterator() {
         return allOrganisms;
+    }
+
+    @Override
+    public String toString() {
+        return allOrganisms.toString() + "\n" + organismsToAdd.toString();
     }
 }
