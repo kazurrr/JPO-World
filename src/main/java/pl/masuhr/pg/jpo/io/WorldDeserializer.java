@@ -75,7 +75,7 @@ public class WorldDeserializer {
             newOrganism.setMyWorld(newWorld);
 
             return newOrganism;
-        } catch (IllegalAccessException | InstantiationException e) {
+        } catch (IllegalAccessException | InstantiationException | NullPointerException e) {
             e.printStackTrace();
 //            throw new WorldParsingException("Cannot create new instance of organism");
         }

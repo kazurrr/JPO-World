@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 06.10.2016.
  */
 public class Logger {
@@ -22,7 +23,7 @@ public class Logger {
         info("Round: 0");
     }
 
-    public void info (Point point, String message) {
+    public void info(Point point, String message) {
         if (isSetUp()) {
             String logMessage = "Field [" + point.x + ":" + point.y + "] " + message;
             System.out.println(logMessage);
@@ -38,7 +39,7 @@ public class Logger {
     }
 
     public void clear() {
-        if(isSetUp()) {
+        if (isSetUp()) {
             logOutput.setText("");
         }
     }

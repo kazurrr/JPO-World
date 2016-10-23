@@ -9,8 +9,6 @@ import pl.masuhr.pg.jpo.io.WorldSerializer;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static pl.masuhr.pg.jpo.gui.Properties.*;
 
@@ -68,7 +66,6 @@ public class MainFrame extends JFrame {
     private void renderWorld() {
         worldFrame.render(greatWorld);
     }
-
     private void bindActions() {
         nextRoundButton.addActionListener(e -> {
             logger.newRound(greatWorld.getRound());
