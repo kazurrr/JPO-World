@@ -49,11 +49,11 @@ public class PopupMenu extends JPopupMenu {
         }
     }
 
-    private AbstractAction getAbstractActionForClass(Class organism) {
+    private AbstractAction getAbstractActionForClass(Class<Organism> organism) {
         return new AbstractAction(organism.getSimpleName()) {
             public void actionPerformed(ActionEvent event) {
                 try {
-                    Organism newOrganism = (Organism) organism.newInstance();
+                    Organism newOrganism = organism.newInstance();
                     newOrganism.setMyWorld(world);
                     newOrganism.setPosition(position);
                     world.addNewOrganism(newOrganism);

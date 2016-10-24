@@ -71,8 +71,8 @@ public class WorldDeserializer {
         try {
             OrganismParser organismParser = new OrganismParser(organismAttributes);
 
-            Class newOrganismClass = ClassFinder.find(organismParser.getString("type"));
-            Organism newOrganism = (Organism) newOrganismClass.newInstance();
+            Class<Organism> newOrganismClass = ClassFinder.find(organismParser.getString("type"));
+            Organism newOrganism = newOrganismClass.newInstance();
 
             newOrganism.setPosition(new Point(organismParser.getInt("x"), organismParser.getInt("y")));
             newOrganism.setMyWorld(newWorld);

@@ -3,11 +3,10 @@ package pl.masuhr.pg.jpo.gui;
 import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
 import pl.masuhr.pg.jpo.io.WorldDeserializer;
-import pl.masuhr.pg.jpo.io.model.WorldParsingException;
 import pl.masuhr.pg.jpo.io.WorldSerializer;
+import pl.masuhr.pg.jpo.io.model.WorldParsingException;
 
 import javax.swing.*;
-
 import java.awt.*;
 
 import static pl.masuhr.pg.jpo.gui.Properties.*;
