@@ -4,6 +4,7 @@ import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
 import pl.masuhr.pg.jpo.model.Organism;
 import pl.masuhr.pg.jpo.model.Plant;
+import pl.masuhr.pg.jpo.model.annotation.OrganismImpl;
 
 import java.awt.*;
 
@@ -11,6 +12,7 @@ import java.awt.*;
  * JPO-Zaliczenie
  * Created by karol on 16.10.2016.
  */
+@OrganismImpl
 public class Guarana extends Plant {
     private static final int INCREASE_STRENGTH = 3;
     private Logger logger = Logger.getInstance();

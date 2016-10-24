@@ -70,11 +70,22 @@
             <artifactId>opencsv</artifactId>
             <version>2.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/de.sciss/weblaf -->
+        <!-- https://mvnrepository.com/artifact/com.seaglasslookandfeel/seaglasslookandfeel -->
         <dependency>
-            <groupId>de.sciss</groupId>
-            <artifactId>weblaf</artifactId>
-            <version>2.1.1</version>
+            <groupId>com.seaglasslookandfeel</groupId>
+            <artifactId>seaglasslookandfeel</artifactId>
+            <version>0.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
         </dependency>
     </dependencies>
 </project>

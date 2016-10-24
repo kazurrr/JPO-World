@@ -11,8 +11,11 @@ import javax.swing.*;
 public class WorldInit {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(WebLookAndFeel::install);
-
+//        try {
+//            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         new MainFrame();
     }
 }

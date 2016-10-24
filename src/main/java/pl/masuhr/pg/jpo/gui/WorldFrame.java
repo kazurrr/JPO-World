@@ -2,6 +2,7 @@ package pl.masuhr.pg.jpo.gui;
 
 import pl.masuhr.pg.jpo.controller.*;
 import pl.masuhr.pg.jpo.model.Organism;
+import pl.masuhr.pg.jpo.service.IconService;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,6 +19,8 @@ import static pl.masuhr.pg.jpo.gui.Properties.SIZE_OF_FIELD;
  * Created by karol on 02.10.2016.
  */
 public class WorldFrame {
+    private IconService icons = IconService.getInstance();
+
     private JPanel panel;
     private int sizeOfWorld = Properties.WORLD_SIZE;
     private JPanel buttonPanel;
@@ -69,23 +72,15 @@ public class WorldFrame {
     private void clean() {
         for (int i = 0; i < sizeOfWorld; i++) {
             for (int j = 0; j < sizeOfWorld; j++) {
-                buttons[i][j].setIcon(new ImageIcon(getImage("Blank.jpg")));
+                buttons[i][j].setIcon(icons.getImage("Blank"));
             }
         }
     }
 
     private void setIcon(Organism organism) {
-        Image img = getImage(organism.draw() + ".jpg");
-        buttons[organism.getPosition().x][organism.getPosition().y].setIcon(new ImageIcon(img));
-    }
+        JButton buttonToSetIcon = buttons[organism.getPosition().x][organism.getPosition().y];
+        String imageName = organism.draw();
 
-    private Image getImage(String name) {
-        try {
-            URL pathToImage = getClass().getClassLoader().getResource(name);
-            return ImageIO.read(pathToImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        buttonToSetIcon.setIcon(icons.getImage(imageName));
     }
 }
