@@ -38,6 +38,11 @@ public class MainFrame extends JFrame {
         bindActions();
     }
 
+    private void initWorld() {
+        greatWorld = new World();
+        greatWorld.addRandomOrganisms();
+    }
+
     private void initComponents() {
         worldFrame = new WorldFrame(worldPanel, greatWorld);
         add(rootPanel);
@@ -53,20 +58,8 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    private void initWorld() {
-        greatWorld = new World();
-        greatWorld.addRandomOrganisms();
-    }
-
     private void renderWorld() {
         worldFrame.render(greatWorld);
-    }
-
-    private void reload() {
-        worldPanel.removeAll();
-        worldFrame = new WorldFrame(worldPanel, greatWorld);
-        renderWorld();
-        setFrameSize();
     }
 
     private void bindActions() {
@@ -91,5 +84,12 @@ public class MainFrame extends JFrame {
                 e1.printStackTrace();
             }
         });
+    }
+
+    private void reload() {
+        worldPanel.removeAll();
+        worldFrame = new WorldFrame(worldPanel, greatWorld);
+        renderWorld();
+        setFrameSize();
     }
 }

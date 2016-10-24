@@ -5,6 +5,7 @@ import pl.masuhr.pg.jpo.model.Organism;
 import java.awt.*;
 
 /**
+ * JPO-Zaliczenie
  * Created by karol on 08.10.2016.
  */
 
