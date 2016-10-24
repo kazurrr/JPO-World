@@ -14,6 +14,9 @@ public class Properties {
     public static final int SIZE_OF_FIELD = 30;
     public static final int FIELD_MARGIN = 3;
     public static final Dimension FIELD_SIZE = new Dimension(SIZE_OF_FIELD, SIZE_OF_FIELD);
-    public static final int GRID_SIZE = (WORLD_SIZE + 1) * (SIZE_OF_FIELD + FIELD_MARGIN) + 2 * FIELD_MARGIN;
+
+    public static int getGridSize() {
+        return (WORLD_SIZE + 1) * (SIZE_OF_FIELD + FIELD_MARGIN) + 2 * FIELD_MARGIN;
+    }
 
 }

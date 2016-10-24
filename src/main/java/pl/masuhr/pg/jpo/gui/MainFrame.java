@@ -31,15 +31,15 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super(WINDOW_TITLE);
+        initWorld();
         initComponents();
         setFrameSize();
-        initWorld();
         renderWorld();
         bindActions();
     }
 
     private void initComponents() {
-        worldFrame = new WorldFrame(worldPanel);
+        worldFrame = new WorldFrame(worldPanel, greatWorld);
         add(rootPanel);
         logger.setUpLogger(logArea);
 
@@ -47,10 +47,10 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    private void setFrameSize() { //ToDo make it better
-        setSize(GRID_SIZE + LOG_AREA_WIDTH, GRID_SIZE);
-
+    private void setFrameSize() {
+        setSize(getGridSize() + LOG_AREA_WIDTH, getGridSize());
         programPanel.setMaximumSize(new Dimension(LOG_AREA_WIDTH, -1));
+        repaint();
     }
 
     private void initWorld() {
@@ -61,6 +61,14 @@ public class MainFrame extends JFrame {
     private void renderWorld() {
         worldFrame.render(greatWorld);
     }
+
+    private void reload() {
+        worldPanel.removeAll();
+        worldFrame = new WorldFrame(worldPanel, greatWorld);
+        renderWorld();
+        setFrameSize();
+    }
+
     private void bindActions() {
         nextRoundButton.addActionListener(e -> {
             logger.newRound(greatWorld.getRound());
@@ -78,7 +86,7 @@ public class MainFrame extends JFrame {
                 WorldDeserializer worldDeserializer = new WorldDeserializer();
                 greatWorld = worldDeserializer.load();
                 Properties.WORLD_SIZE = worldDeserializer.worldSize();
-                renderWorld();
+                reload();
             } catch (WorldParsingException e1) {
                 e1.printStackTrace();
             }

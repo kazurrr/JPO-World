@@ -3,10 +3,7 @@ package pl.masuhr.pg.jpo.util;
 import org.reflections.Reflections;
 import pl.masuhr.pg.jpo.model.annotation.OrganismImpl;
 
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -42,5 +39,15 @@ public class ClassFinder {
             allClasses.addAll(classesInPackage);
         }
         return allClasses;
+    }
+
+    public static List<Class<?>> getAllAnimals() {
+        Reflections reflections = new Reflections(SEARCH_PACKAGES[0]);
+        return new ArrayList<>(reflections.getTypesAnnotatedWith(OrganismImpl.class));
+    }
+
+    public static List<Class<?>> getAllPlants() {
+        Reflections reflections = new Reflections(SEARCH_PACKAGES[1]);
+        return new ArrayList<>(reflections.getTypesAnnotatedWith(OrganismImpl.class));
     }
 }

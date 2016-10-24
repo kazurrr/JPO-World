@@ -1,5 +1,6 @@
 package pl.masuhr.pg.jpo.io;
 
+import pl.masuhr.pg.jpo.controller.Logger;
 import pl.masuhr.pg.jpo.controller.World;
 import pl.masuhr.pg.jpo.io.model.WorldParsingException;
 import pl.masuhr.pg.jpo.model.Organism;
@@ -19,11 +20,13 @@ import java.util.List;
  */
 public class WorldDeserializer {
     private static final String FILE_PATH = "world-serialized.txt";
+    private Logger logger = Logger.getInstance();
     private List<String> allOrganisms;
     private World newWorld;
     private int sizeOfWorld;
 
     public World load() throws WorldParsingException {
+        logger.clear();
         readContentFromFile();
         prepareWorld();
         createOrganisms();

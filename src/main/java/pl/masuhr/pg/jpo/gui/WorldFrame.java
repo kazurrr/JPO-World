@@ -4,11 +4,8 @@ import pl.masuhr.pg.jpo.controller.*;
 import pl.masuhr.pg.jpo.model.Organism;
 import pl.masuhr.pg.jpo.service.IconService;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
 
 import static pl.masuhr.pg.jpo.gui.Properties.FIELD_MARGIN;
 import static pl.masuhr.pg.jpo.gui.Properties.FIELD_SIZE;
@@ -20,20 +17,22 @@ import static pl.masuhr.pg.jpo.gui.Properties.SIZE_OF_FIELD;
  */
 public class WorldFrame {
     private IconService icons = IconService.getInstance();
+    private PopupMenu popupMenu;
 
     private JPanel panel;
     private int sizeOfWorld = Properties.WORLD_SIZE;
     private JPanel buttonPanel;
     private JButton buttons[][];
 
-    public WorldFrame(JPanel panel) {
+    public WorldFrame(JPanel panel, World world) {
         this.panel = panel;
+        popupMenu = new PopupMenu(world);
 
         prepareButtonPanel();
         createButtons();
     }
 
-    private void prepareButtonPanel() {
+    protected void prepareButtonPanel() {
         panel.setLayout(null);
 
         panel.setSize(sizeOfWorld * SIZE_OF_FIELD + ((sizeOfWorld + 1) * FIELD_MARGIN),
@@ -54,16 +53,25 @@ public class WorldFrame {
                 buttons[j][i] = new JButton();
                 buttons[j][i].setPreferredSize(FIELD_SIZE);
                 buttonPanel.add(buttons[j][i]);
+                addListener(buttons[j][i], j, i);
             }
         }
 
         panel.add(buttonPanel, BorderLayout.CENTER);
     }
 
+    private void addListener(JButton button, int x, int y) {
+        button.addActionListener(e -> {
+            popupMenu.show(buttonPanel, x * SIZE_OF_FIELD, y * SIZE_OF_FIELD);
+            popupMenu.setPosition(new Point(x, y));
+            popupMenu.setButtonReference(button);
+            popupMenu.setVisible(true);
+        });
+    }
+
     public void render(World world) {
-        Iterable<Organism> allOrganisms = world.organismIterable();
         clean();
-        for (Organism organism : allOrganisms) {
+        for (Organism organism : world.organismIterable()) {
             if (!organism.isMarkToRemove())
                 setIcon(organism);
         }
