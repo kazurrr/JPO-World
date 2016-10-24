@@ -16,10 +16,7 @@ import static pl.masuhr.pg.jpo.gui.Properties.*;
  * JPO-Zaliczenie
  * Created by karol on 05.10.2016.
  */
-//ToDo refactor this class to remove Intellij GUI builder
 public class MainFrame extends JFrame {
-    private static final int SIZE_OF_WORLD = 5;
-
     private JPanel worldPanel;
     private JPanel rootPanel;
     private JButton saveButton;
@@ -51,9 +48,7 @@ public class MainFrame extends JFrame {
     }
 
     private void setFrameSize() { //ToDo make it better
-        int width = (SIZE_OF_WORLD * (SIZE_OF_FIELD + FIELD_MARGIN + 15)) + LOG_AREA_WIDTH;
-        int height = (SIZE_OF_WORLD + 1) * (SIZE_OF_FIELD + FIELD_MARGIN);
-        setSize(width, height);
+        setSize(GRID_SIZE + LOG_AREA_WIDTH, GRID_SIZE);
 
         programPanel.setMaximumSize(new Dimension(LOG_AREA_WIDTH, -1));
     }
